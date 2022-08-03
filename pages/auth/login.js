@@ -20,7 +20,7 @@ import {
     useColorModeValue,
   } from '@chakra-ui/react';
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { login } from '../../actions';
+import { getUserDetails, login } from '../../actions';
 import { setAuthentication, setProfile } from '../../store/slices/user.slice';
 
 const Login = () => {
@@ -52,7 +52,14 @@ const Login = () => {
             const response = await login(loginDetails)
     
             setLoading(false)
-            dispatch( setProfile( response.data ) )
+
+            // The server has been down up until now. so i cant tell what the response object of this endpoint looks like
+            // note: error 502 bad gateway.
+            
+            // getUserDetails()
+            // .then( res => {
+            //     dispatch( setProfile( response.data ) )
+            // })
             dispatch( setAuthentication( true ) )
             // if (response?.data) {
                 push('/')
